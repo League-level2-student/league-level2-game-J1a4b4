@@ -11,12 +11,14 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	Timer timer;
+	Timer shipSpawn;
 	final int MENU_STATE = 0;
 	 final int GAME_STATE = 1;
 	 final int END_STATE = 2;
 	 int currentState = MENU_STATE;
 	 Font titleFont;
 	 Crosshair crosshair = new Crosshair();
+	 ObjectManager manager = new ObjectManager(crosshair);
 	 
 		GamePanel(){
 			timer = new Timer(1000/60, this);
@@ -25,6 +27,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		
 		void startGame() {
 			timer.start();
+			shipSpawn = new Timer(1000, manager);
+			shipSpawn.start();
 		}
 		
 		void updateMenuState() {
@@ -32,7 +36,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}
 		
 		void updateGameState() {
-			
+			manager.update();
+			if(manager.hits <= 0) {
+				currentState = END_STATE;
+				shipSpawn.stop();
+			}
 		}
 		
 		void updateEndState() {
@@ -40,16 +48,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}
 		
 		void drawMenuState(Graphics g) {
-			g.setColor(Color.BLUE);
+			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
 			g.setFont(titleFont);
-			g.setColor(Color.YELLOW);
-			g.drawString("League Invaders", 75, 300);
+			g.setColor(Color.WHITE);
+			g.drawString("Hunter-Killer", 350, 250);
 		}
 		
 		void drawGameState(Graphics g) {
-			g.setColor(Color.BLACK);
+			g.setColor(Color.BLUE);
 			g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
+			manager.draw(g);
 		}
 		
 		void drawEndState(Graphics g) {
@@ -57,12 +66,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
 			g.setFont(titleFont);
 			g.setColor(Color.BLACK);
-			g.drawString("Game Over", 125, 300);
+			g.drawString("Game Over", 350, 250);
+			g.drawString("Score: " + manager.score, 350, 300);
 		}
 
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -80,13 +89,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 					crosshair.left();
 				}else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 					crosshair.right();
+				}else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					manager.addTorpedo(crosshair.getTorpedo());
 				}
 			}
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 

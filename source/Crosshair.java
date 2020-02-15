@@ -6,20 +6,17 @@ public class Crosshair {
 	int cx;
 	int speed;
 	int width = 10;
-	int height = 20;
+	int height = 25;
+	
 	
 	Crosshair(){
-		cx = 500 - width/2;
+		cx = 495;
 		speed = 10;
-	}
-	
-	void update(){
-		
 	}
 	
 	void draw(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect(cx, 480, width, height);
+		g.fillRect(cx, 475, width, height);
 	}
 	
 	void left() {
@@ -28,5 +25,9 @@ public class Crosshair {
 	
 	void right() {
 		cx = cx + speed;
+	}
+	
+	public Torpedo getTorpedo() {
+		return new Torpedo(cx, 475, 10, 50);
 	}
 }
