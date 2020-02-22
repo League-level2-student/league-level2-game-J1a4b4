@@ -37,12 +37,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		
 		void updateGameState() {
 			manager.update();
-			if(manager.hits <= 0) {
+			if (manager.hits <= 0) {
 				currentState = END_STATE;
 				shipSpawn.stop();
 			}
 		}
-		
 		void updateEndState() {
 			
 		}
@@ -83,6 +82,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 					startGame();
 				}else if (currentState == END_STATE) {
 					currentState = MENU_STATE;
+					crosshair = new Crosshair();
+					manager = new ObjectManager(crosshair);
 				}
 			}else if (currentState == GAME_STATE) {
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {

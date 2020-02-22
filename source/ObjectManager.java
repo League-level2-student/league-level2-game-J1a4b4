@@ -11,8 +11,8 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Ship> enemies = new ArrayList<Ship>();
 	ArrayList<Ship> friends = new ArrayList<Ship>();
 	Random random = new Random();
-	int hits = 5;
 	int score = 0;
+	int hits = 5;
 	int friend;
 	int enemy;
 
@@ -29,7 +29,7 @@ public class ObjectManager implements ActionListener {
 		if (enemy == 0) {
 			enemies.add(new EnemyDestroyer(Runner.WIDTH, 100, 100, 20));
 		} else if (enemy == 1) {
-			enemies.add(new EnemyCarrier(0, 100, 140, 30));
+			enemies.add(new EnemyCarrier(1, 100, 140, 30));
 		}
 	}
 
@@ -38,26 +38,30 @@ public class ObjectManager implements ActionListener {
 		if (friend == 0) {
 			friends.add(new AlliedDestroyer(Runner.WIDTH, 100, 100, 20));
 		} else if (friend == 1) {
-			friends.add(new AlliedCarrier(0, 100, 140, 30));
+			friends.add(new AlliedCarrier(1, 100, 140, 30));
 		}
 	}
 
 	void update() {
 		for (int i = 0; i < torpedoes.size(); i++) {
 			torpedoes.get(i).update();
-			if (torpedoes.get(i).y < 0 - torpedoes.get(i).height) {
+			if (torpedoes.get(i).y < 0) {
 				torpedoes.get(i).isActive = false;
 			}
 		}
 		for (int i = 0; i < friends.size(); i++) {
 			friends.get(i).update();
-			if (friends.get(i).y < 0 - friends.get(i).height) {
+			if (friends.get(i).x < 0) {
+				friends.get(i).isActive = false;
+			}else if (friends.get(i).x > Runner.WIDTH) {
 				friends.get(i).isActive = false;
 			}
 		}
 		for (int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).update();
-			if (enemies.get(i).y < 0 - enemies.get(i).height) {
+			if (enemies.get(i).x < 0) {
+				enemies.get(i).isActive = false;
+			}else if (enemies.get(i).x > Runner.WIDTH) {
 				enemies.get(i).isActive = false;
 			}
 		}
@@ -102,6 +106,16 @@ public class ObjectManager implements ActionListener {
 		for (int i = 0; i < torpedoes.size(); i++) {
 			if (torpedoes.get(i).isActive == false) {
 				torpedoes.remove(i);
+			}
+		}
+		for (int i = 0; i < enemies.size(); i++) {
+			if (enemies.get(i).isActive == false) {
+				enemies.remove(i);
+			}
+		}
+		for (int i = 0; i < friends.size(); i++) {
+			if (friends.get(i).isActive == false) {
+				friends.remove(i);
 			}
 		}
 	}

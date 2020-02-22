@@ -3,15 +3,15 @@ import java.awt.Graphics;
 
 public class Crosshair {
 
-	int cx;
-	int speed;
+	int cx = 380;
+	int speed = 20;
 	int width = 10;
 	int height = 25;
 	
 	
 	Crosshair(){
 		cx = 495;
-		speed = 10;
+		speed = 20;
 	}
 	
 	void draw(Graphics g) {

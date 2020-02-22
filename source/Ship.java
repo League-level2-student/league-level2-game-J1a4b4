@@ -18,6 +18,7 @@ public class Ship {
 		this.width = width;
 		this.height = height;
 		collisionBox = new Rectangle(x, y, width, height);
+		isActive = true;
 	}
 	
 	void update() {
