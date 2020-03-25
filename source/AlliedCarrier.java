@@ -13,8 +13,8 @@ public class AlliedCarrier extends AlliedShip{
 	AlliedCarrier(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 5;
-		if{(needImage){
-			loadImage("AmericanCarrier.png");
+		if(needImage){
+			loadImage("AmericanCarrier1.png");
 		}
 	}
 	

@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawMenuState(Graphics g) {
 			if (gotImage) {
-				g.drawImage(image, x, y, width, height, null);
+				g.drawImage(image, 0, 0, Runner.WIDTH, Runner.HEIGHT, null);
 			} else {
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
@@ -68,8 +68,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
+		needImage = true;
+		loadImage("Backgroud.png");
+		if (gotImage) {
+			g.drawImage(image, 0, 0, Runner.WIDTH, Runner.HEIGHT, null);
+		}else {
+			g.setColor(Color.BLUE);
+			g.fillRect(0, 0, Runner.WIDTH, Runner.HEIGHT);
+		}
 		manager.draw(g);
 	}
 
