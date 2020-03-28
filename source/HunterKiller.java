@@ -2,20 +2,20 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Runner {
+public class HunterKiller {
 
 	JFrame frame;
 	final static int WIDTH = 1000;
 	final static int HEIGHT = 500;
 	GamePanel gamePanel;
 	
-	Runner() {
+	HunterKiller() {
 		frame = new JFrame();
 		gamePanel = new GamePanel();
 	}
 	
 	public static void main(String[] args) {
-		Runner runner = new Runner();
+		HunterKiller runner = new HunterKiller();
 		runner.setup();
 	}
 	

@@ -27,25 +27,25 @@ public class ObjectManager implements ActionListener {
 	void addEnemy() {
 		enemy = random.nextInt(2);
 		if (enemy == 0) {
-			enemies.add(new EnemyDestroyer(Runner.WIDTH, 100, 100, 20));
+			enemies.add(new EnemyDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 		} else if (enemy == 1) {
-			enemies.add(new EnemyCarrier(1, 100, 140, 30));
+			enemies.add(new EnemyCarrier(1, 137, 140, 30));
 		}
 	}
 
 	void addFriend() {
 		friend = random.nextInt(2);
 		if (friend == 0) {
-			friends.add(new AlliedDestroyer(Runner.WIDTH, 100, 100, 20));
+			friends.add(new AlliedDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 		} else if (friend == 1) {
-			friends.add(new AlliedCarrier(1, 100, 140, 30));
+			friends.add(new AlliedCarrier(1, 137, 140, 30));
 		}
 	}
 
 	void update() {
 		for (int i = 0; i < torpedoes.size(); i++) {
 			torpedoes.get(i).update();
-			if (torpedoes.get(i).y < 0) {
+			if (torpedoes.get(i).y < 157) {
 				torpedoes.get(i).isActive = false;
 			}
 		}
@@ -53,7 +53,7 @@ public class ObjectManager implements ActionListener {
 			friends.get(i).update();
 			if (friends.get(i).x < 0) {
 				friends.get(i).isActive = false;
-			}else if (friends.get(i).x > Runner.WIDTH) {
+			}else if (friends.get(i).x > HunterKiller.WIDTH) {
 				friends.get(i).isActive = false;
 			}
 		}
@@ -61,7 +61,7 @@ public class ObjectManager implements ActionListener {
 			enemies.get(i).update();
 			if (enemies.get(i).x < 0) {
 				enemies.get(i).isActive = false;
-			}else if (enemies.get(i).x > Runner.WIDTH) {
+			}else if (enemies.get(i).x > HunterKiller.WIDTH) {
 				enemies.get(i).isActive = false;
 			}
 		}
