@@ -152,6 +152,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				gotImage = false;
 				loadImage("Instructions2.png");
 				JOptionPane.showMessageDialog(null, "The small green line at the bottom of the screen is your crosshair.  Use it to aim torpedoes, and fire with the up arrow key.");
+				JOptionPane.showMessageDialog(null, "You will receive points for destroying enemies, but the game will end after you shoot 5 allies.");
 			}else if (currentState == INSTRUCTIONS_STATE) {
 				currentState = MENU_STATE;
 				needImage = true;
