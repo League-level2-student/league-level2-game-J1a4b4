@@ -26,20 +26,22 @@ public class ObjectManager implements ActionListener {
 
 	void addEnemy() {
 		enemy = random.nextInt(2);
-		if (enemy == 0) {
+		/*if (enemy == 0) {
 			enemies.add(new EnemyDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 		} else if (enemy == 1) {
 			enemies.add(new EnemyCarrier(1, 137, 140, 30));
-		}
+		}*/
+		enemies.add(new EnemyDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 	}
 
 	void addFriend() {
 		friend = random.nextInt(2);
-		if (friend == 0) {
+		/*if (friend == 0) {
 			friends.add(new AlliedDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 		} else if (friend == 1) {
 			friends.add(new AlliedCarrier(1, 137, 140, 30));
-		}
+		}*/
+		friends.add(new AlliedDestroyer(HunterKiller.WIDTH, 147, 100, 20));
 	}
 
 	void update() {
